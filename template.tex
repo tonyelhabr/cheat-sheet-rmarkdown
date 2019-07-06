@@ -1,0 +1,76 @@
+
+% Reference: https://tex.stackexchange.com/questions/8827/preparing-cheat-sheets/8915
+
+% Package imports.
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape, a4paper]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+% Sets page margins.
+\geometry{top=.2in,left=.2in,right=.2in,bottom=.2in}
+
+% Turns off header and footer.
+\pagestyle{empty}
+
+% Redefine section commands to use less space and have smaller text.
+% (Can change font size if `\tiny` is too small.
+% See http://www.sascha-frank.com/latex-font-size.html as a reference.)
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-0.5ex plus -.5ex minus -.2ex}%
+                                {-0.5\baselineskip}%
+                                {\normalfont\tiny\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-0.5ex plus -.5ex minus -.2ex}%
+                                {-0.5\baselineskip}%
+                                {\normalfont\tiny\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-0.5ex plus -.5ex minus -.2ex}%
+                                {-0.5\baselineskip}%
+                                {\normalfont\tiny\bfseries}}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{0mm}%
+                                {-0.5ex plus -.5ex minus -.2ex}%
+                                {-0.5\baselineskip}%
+                                {\normalfont\tiny\bfseries}}
+\makeatother
+
+% No section numbers.
+\setcounter{secnumdepth}{0}
+
+% Minimal paragraph indenting and spacing.
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Canonical "init" statement.
+\begin{document}
+
+% Don't start new paragraphs if you don't need to.
+\raggedright
+
+% Font size.
+\tiny
+
+% Specifying number of columns.
+% Asterisk "*" here to force the left-most column to fill first, then the next, ect.
+% (Otherwise, all columns would fill down "equally".
+\begin{multicols*}{5}
+
+% Can play around with these as desired.
+\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{0.25pt}
+\setlength{\postmulticols}{0.25pt}
+\setlength{\multicolsep}{0.25pt}
+\setlength{\columnsep}{0.25pt}
+
+% This is the "magic" pandoc variable. (This is where your Rmarkdown document is inserted.)
+$body$
+
+% `\end` statements to match the `\begin`s.
+\end{multicols*}
+
+\end{document}

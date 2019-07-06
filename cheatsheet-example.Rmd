@@ -1,0 +1,461 @@
+---
+title: ""
+output:
+  pdf_document:
+    latex_engine: pdflatex
+    keep_tex: true
+    template: template.tex
+---
+
+
+## Some Simple Examples
+
+Euler's constant: $e = \mathop {\lim }\limits_{n \to \infty } \left( {1 + \frac{1}{n}} \right)^n$
+
+Integration by parts: $\int {u\frac{{dv}}{{dx}}} dx = uv - \int {\frac{{du}}{{dx}}} vdx$
+
+Example of a multi-line equation:
+
+$$
+\begin{align*}
+I &= \int (x + 1) dx \\
+&= \frac{x^2}{2} + x + C.
+\end{align*}
+$$
+
+<!--
+**Source: Dave Richeson, Dickinson College, \href{http://divisbyzero.com/}{http://divisbyzero.com/}**
+-->
+
+## Some Quantim Mechanics Physics Equations.
+
+Source: https://www.overleaf.com/articles/griffith-quantum-mechanics-time-dependent-perturbation-theory-cheatsheet-ucb-137b-final/jwynrzctvqgp
+
+\section{TIPT}
+\begin{align*}
+    H = H_0 + H' \\
+    E_n = E_n^0 + E_n^1 \\
+    |\psi_n\rangle = |\psi_n^0\rangle + |\psi_n^1\rangle \\
+    E_n^1 = \langle \psi_n^0 | H' | \psi_n^0 \rangle \\
+    |\psi_n^1\rangle = \sum_{m\neq n} \frac{\langle \psi_m^0 | H' | \psi_n^0 \rangle}{E_n^0-E_m^0} | \psi_m^0\rangle
+\end{align*}
+
+Or, the Rmarkdown way (with `$$`), which enables inline previews (in RStudio).
+
+
+$$
+H = H_0 + H' \\
+E_n = E_n^0 + E_n^1 \\
+|\psi_n\rangle = |\psi_n^0\rangle + |\psi_n^1\rangle \\
+E_n^1 = \langle \psi_n^0 | H' | \psi_n^0 \rangle \\
+|\psi_n^1\rangle = \sum_{m\neq n} \frac{\langle \psi_m^0 | H' | \psi_n^0 \rangle}{E_n^0-E_m^0} | \psi_m^0\rangle
+$$
+
+\subsection{Degenerate Case}
+\begin{align*}
+    \text{Degenerate space: } \{|i\rangle\} \to E\\
+    \quad W_{ab} = \langle a | H' | b \rangle \text{ Non-Diagonal} \\
+    \text{Eigenvalue and Eivenvectors} \to E_n^1, |\hat{i}\rangle
+\end{align*}
+
+
+\section{Variational Method}
+\begin{align*}
+    \langle H \rangle(\lambda) &= 
+    \frac{\langle \psi(x,\lambda)|H|\psi(x,\lambda) \rangle}{\langle \psi(x,\lambda)|\psi(x,\lambda) \rangle} \\
+    \langle H \rangle(\lambda) &\geq E_{.g.s} \\
+    \frac{d}{d\lambda} \langle H \rangle(\lambda_0) = 0 &\Rightarrow
+    \langle H \rangle(\lambda_0) \approx E_{.g.s}
+\end{align*}
+
+\section{WKB Method}
+\begin{align*}
+    \frac{d^2 \psi(x)}{dx^2} &= -k^2(x) \psi(x)& \\ k(x)&=\frac1\hbar \sqrt{2m(E-V(x)} \\
+    \phi(x) &= \int^x k(x) dx \\
+    \psi(x) &= \frac1{\sqrt{k(x)}} (C_+ e^{i \phi(x)} + C_- e^{-i \phi(x)})\\ 
+    &= \frac1{\sqrt{k(x)}} (C_1 \sin{\phi(x)} + C_2 \cos{\phi(x)})
+\end{align*}
+
+\subsection{Energy Level}
+\begin{align*}
+    \int_{R_{classical}} k(x) dx = n\pi \\
+    \text{one $\infty$ wall} \quad n \to n-1/4 \\
+    \text{No $\infty$ wall} \quad n \to n-1/2 
+\end{align*}
+
+\subsection{Tunneling}
+\begin{align*}
+    T = e^{-2\gamma} \\
+    \gamma = \int_{R_{forbidden}} k(x) dx
+\end{align*}
+
+\section{TDPT}
+\begin{align*}
+    H = H_0 + V(t) \\
+    \text{Eigenstate of $H_0$: } |n\rangle, E_n\\
+    \text{transition: } |i\rangle \to | f\rangle \\
+    V_{f i}(t) = \langle f | V(t) | i \rangle \\
+    \omega_{f i} = (E_f-E_i)/\hbar \\
+    c_f(T) = \frac{-i}{\hbar} \int_0^T V_{f i}(t) e^{-i \omega_{f i} t} dt 
+\end{align*}
+
+\subsection{Constant Perturbation}
+\begin{align*}
+    V(t) = \begin{cases}
+    V, & 0 \leq t \leq T \\
+    0, & \text{otherwise}
+    \end{cases} \\
+    V_{fi}(t)= constant \\
+    P_{i\to f}(t)= |c_f(t)|^2 = 4 \frac{|V_{fi}|^2}{\hbar^2}  \frac{\sin^2(\omega_{fi})t/2}{\omega_{fi}^2} \\
+    \omega_{fi} \to 0 \quad \text{(degenerate states):} \\
+    |c_f(t)|^2 = \frac{|V_{fi}|^2}{\hbar^2} t^2
+\end{align*}
+
+\subsection{Absorption}
+\begin{align*}
+    V(t) = V \sin(\omega t) \\
+    P_{i\to f}(t) = \frac{|V_{fi}|^2}{\hbar^2}  \frac{\sin^2((\omega_{fi}-\omega)t/2)}{(\omega_{fi}-\omega)^2}
+\end{align*}
+
+\subsection{Simulated Emission}
+\begin{align*}
+    E_i > E_f,\quad \omega_{fi}<0 \\
+    P_{i\to f}(t) = \frac{|V_{fi}|^2}{\hbar^2}  \frac{\sin^2((\omega_{fi}+\omega)t/2)}{(\omega_{fi}+\omega)^2}
+\end{align*}
+
+\subsection{Fermi Golden Rule}
+\begin{align*}
+    E_i \to E_f\text{  (continuous states)} \\
+    P_{i\to f} = 
+\frac{2\pi}{\hbar} |\langle f | V| i\rangle |^2 \rho(E_f) t \\
+\end{align*}
+
+\subsection{Selection Rule}
+For spherical symmetric potential: 
+\begin{align*}
+    \langle n',l',m'| \vec{r} | n,l,m \rangle &\neq 0 \text{  when:} \\
+    \Delta l &= \pm 1 \text{  and:}\\
+    \Delta l &= \pm 1 \text{ or } 0
+\end{align*}
+
+
+\section{Scattering}
+\begin{align*}
+    \psi(r,\theta) &= e^{ikz} + f(\theta) \frac{e^{ikr}}{r}, \text{  for large r} \\
+    k &= \frac{\sqrt{2mE}}\hbar \\
+    \frac{d \sigma}{d \Omega} &= |f(\theta)|^2 \\
+    \sigma &= \int d\omega \frac{d \sigma}{d \Omega}
+\end{align*}
+
+\subsection{Born Approximation}
+\begin{align*}
+    f(\theta) = -\frac{m}{2\pi \hbar^2} \int  V(\vec{r}) e^{i(\vec{k}'-\vec{k})\cdot \vec{r}} d^3\vec{r}
+    \intertext{Low Energy:}
+    f(\theta) = -\frac{m}{2\pi \hbar^2} \int  V(\vec{r}) d^3\vec{r} 
+    \intertext{Spherical symmetric:}
+    f(\theta) = -\frac{2m}{\hbar^2 \kappa} \int_0^\infty r V(r) \sin(\kappa r) dr \\
+    \kappa = 2k\sin(\theta/2)
+\end{align*}
+
+\subsubsection{Yukawa Potential}
+\begin{align*}
+    V(r) = V_0 \frac{e^{-r/R}}{r} \\
+    f(\theta) = -\frac{2mV_0 R^2}{\hbar^2} \frac{1}{1+4k^2R^2\sin^2(\theta/2)} \\
+    \sigma = (\frac{2mV_0R^2}{\hbar^2})^2 \frac{4\pi}{1+4k^2R^2}
+\end{align*}
+
+\subsubsection{Rutherford Scattering}
+Let $V_0 = q_1q_2/4\pi \epsilon_0$, $R=\infty$:
+\begin{align*}
+    f(\theta) = -\frac{2mq_1q_2}{4\pi\epsilon_0\hbar^2\kappa^2}
+\end{align*}
+
+\subsection{Partial Waves}
+\begin{align*}
+    f(\theta) &= \frac1k \sum_{i=0}^\infty (2l+1)e^{i \delta_l} \sin(\delta_l) P_l(\cos(\theta)) \\
+    \sigma &= \frac{4\pi}{k^2}\sum_{l=0}^\infty (2l+1) \sin^2(\delta_l)
+\end{align*}
+
+\subsubsection{Optical Theorem}
+\begin{equation*}
+    Im[f(0)] = \frac{k \sigma}{4\pi}
+\end{equation*}
+
+\subsubsection{Hard Ball}
+\begin{align*}
+    \delta_l = \tan^{-1}(\frac{j_l(ka)}{\eta_l(ka)}) \\
+     ka << 1 \to \sigma = 4\pi a^2
+\end{align*}
+
+\section{Useful Models}
+
+\subsection{Density of States}
+\begin{align*}
+    E &= \hbar^2 k^2 /2m \\
+    dN &= \frac{L^3}{(2\pi)^3} d^3k = \frac{L^3}{(2\pi)^3} d\Omega dk \\
+    dN &= \frac{L^3}{(2\pi)^3} 4\pi \frac{m}{\hbar^2 k} dE \\
+    \rho(E) &= \frac{dN}{dE} = \frac{L^3}{2\pi^2} \frac{mk}{\hbar^2}
+\end{align*}
+
+\subsection{infinite square well}
+\begin{align*}
+    H(x) = \frac{p^2}{2m} + \begin{cases}
+    0, & 0\leq x\leq a \\
+    \infty, & \text{otherwise}
+    \end{cases} \\
+    E_n = \frac1{2m} (\frac{n \pi \hbar}{a})^2 \\
+    \psi_n = \sqrt{\frac{2}{a}} \sin(\frac{n\pi x}{a}) e^{-iE_nt/\hbar}
+\end{align*}
+
+\subsection{Harmonic Oscillator}
+\begin{align*}
+    H(x) &= \frac{p^2}{2m} + \frac12 m\omega^2x^2 \\
+    E_n &= (n+1/2)\hbar \omega \\
+    \psi_n(x) &= \frac1{\sqrt{2^n n!}} (\frac{m\omega}{\pi \hbar})^{1/4} e^{-\zeta^2/2} H_n(\zeta) \\
+    \zeta &= \sqrt{\frac{m\omega}{\hbar}x}
+\end{align*}
+
+\subsection{Virial Theorem}
+\begin{align*}
+    2 \langle T \rangle = \langle \vec{r} \cdot \nabla V \rangle 
+    \quad \text{(3D)}\\
+    2 \langle T \rangle = \langle x  \frac{dV}{dx} \rangle \quad \text{(1D)}\\
+    2 \langle T \rangle = n \langle V \rangle \quad (V\propto r^n) \\
+    \langle T\rangle = -E_n, \quad \langle V \rangle = 2 E_n \quad \text{(hydrogen)}\\
+    \langle T\rangle = \langle V \rangle = E_n/2 \quad \text{(harmonic oscillator)}\\
+\end{align*}
+
+\section{Math}
+
+\subsection{Legendre Polynomials}
+Domain: $(-1,1)$ \\
+Even, Odd, Even, Odd ...
+\begin{align*}
+    P_0(x) &= 1 \\
+    P_1(x) &= x \\
+    P_2(x) &= \frac12 (3x^2-1) \\
+    P_3(x) &= \frac12 (5x^3 - 3x) 
+\end{align*}
+
+\subsection{Hankel Functions}
+Solution to Radial Shrodinger Equation:
+\begin{align*}
+    -\frac{\hbar^2}{2m} \frac{1}{r^2} \frac{\partial}{\partial r} (r^2 R_{El}) + [V(r) + \frac{\hbar^2 l (l+1)}{2m r^2}]R_{El} = E R_{El} \\
+    V = 0 \to R_{El} = j_l(kr) \\
+    V \neq 0 \to R_{El} = j_l(kr+\delta_l) \\
+    r \to \infty \Rightarrow R_{El} = \frac{\sin(kr-l\pi/2+\delta_l(E))}{kr}
+\end{align*}
+When $kr >> 1$ 
+\begin{align*}
+    j_l(kr) &\to \frac{\sin{kr-l\pi/2}}{kr} \\
+    \eta_l(kr) &\to \frac{-\cos{kr-l\pi/2}}{kr} \\
+    h_l(kr) &\to \frac{e^{i(kr-l\pi/2)}}{ikr} \\
+    h_l^*(kr) &\to \frac{e^{-i(kr-l\pi/2)}}{-ikr} \\
+    j_l(kr) &= \frac{1}{2} (h_l(kr)+h^*(kr))
+\end{align*}
+
+\subsection{Hermite  Polynomials}
+Domain: $(-\infty,\infty)$ \\
+Even, Odd, Even, Odd ...
+\begin{align*}
+    H_0(x) &= 1 \\
+    H_1(x) &= 2x \\
+    H_2(x) &= 4x^2-2 \\
+    H_3(x) &= 8x^3-12x 
+\end{align*}
+
+\subsection{Spherical Harmonics}
+\begin{align*}
+    |l,m \rangle &= Y_l^m(\theta, \phi) \\
+    Y_0^0(\theta,\phi) &= \frac12 \frac1{\sqrt{\pi}} \\
+    Y_1^0(\theta,\phi) &= \frac12 \sqrt{\frac3\pi} \cos{\theta} \\
+    Y_1^{-1}(\theta,\phi) &= \frac12 \sqrt{\frac{3}{2\pi}} \sin{\theta} e^{-i \phi} \\
+    Y_1^{-1}(\theta,\phi) &= -\frac12 \sqrt{\frac{3}{2\pi}} \sin{\theta} e^{i \phi} 
+\end{align*}
+
+\subsection{Green's Function}
+For a Linear Operator $\hat{D}_x$
+\begin{align*}
+    \text{Homogeneous solution:  }\hat{D}_x \psi_0(x) = 0 \\
+    \text{Hard Problem:  }\hat{D}_x \psi(x) = f(x) \\
+    \text{Simple Problem:  }\hat{D}_x G(x,x') = \delta(x-x') \\
+    \psi(x) = \psi_0(x) + \int_{\text{f Domain}} G(x,x') f(x') dx'
+\end{align*}
+
+\subsection{Some Integrals}
+\begin{align*}
+    \Gamma(n+1) &=  n! \\
+    \Gamma(z+1) &= z \Gamma(z) \\
+    \int_0^\infty x^n e^{-ax} dx &= \frac{n!}{a^{n+1}} \\
+    \int_0^\infty e^{-ax^b} dx &= a^{-1/b} \Gamma(1/b+1) \\
+    \int_0^\infty e^{-ax} \sin{bx} dx &= \frac{b}{a^2+b^2} \\
+    \int_0^\infty e^{-ax} \cos{bx} dx &= \frac{a}{a^2+b^2} \\
+    \int_{-\infty}^\infty e^{-ax^2+bx} dx &= \sqrt{\frac{\pi}{a}} e^{\frac{b^2}{4a}} \\
+    \int_0^\infty e^{-ax^2}x^n dx &= I_n(a)\\
+    I_0=\frac12 \sqrt{\frac{\pi}{a}}, I_1&=\frac{1}{2a}, I_2=\frac1{4a} \sqrt{\frac{\pi}{a}}, I_3=\frac{1}{2a^2}
+\end{align*}
+
+**Source: `clipr::write_clip(stringi::stri_rand_lipsum(10))`**
+
+Lorem ipsum dolor sit amet, consequat lacinia in turpis tellus finibus. Luctus
+enim, urna fringilla pharetra eros. Conubia vestibulum vel mollis sem non donec
+per, eget sed. Mollis vulputate, vestibulum semper dolor senectus et. In leo,
+interdum sagittis litora. Sed amet, nec et sodales placerat risus quam vitae,
+maximus maecenas, ut. Risus enim adipiscing sodales eu nec nulla tempor eu.
+Turpis sed erat eget pellentesque. Blandit ut quisque a conubia ipsum non
+sociosqu neque. Dui quam commodo. Dolor ante lacus ligula tellus nunc egestas,
+ultricies. Laoreet condimentum sit. Vitae erat hac donec sem fames sed sed,
+consequat neque tempor sed. Suspendisse, nibh amet ac congue taciti elementum
+lectus, lacus egestas felis sem. Dictum, vulputate nulla semper, taciti amet
+conubia et ligula augue, nec. In tellus semper sed vestibulum. Nisi scelerisque
+cum tellus in sed quisque egestas ultrices neque maecenas, purus in. Feugiat dui
+vestibulum in quis leo nullam quis. Leo aliquet curae velit nascetur accumsan,
+aliquam. Eleifend, ut non id imperdiet senectus ut tempor neque. Sed ut dui
+suscipit. Facilisis nullam cubilia, dui, risus eu velit ullamcorper imperdiet.
+In ex tempus sed eu massa, tempus, vel. Sit non ligula vel, auctor lectus justo
+suspendisse malesuada dolor. Sed quis, at, porttitor habitant, nunc sed risus
+posuere. Ligula sed adipiscing fusce pretium mi, fames eu. Amet at tincidunt
+phasellus tincidunt nascetur tincidunt amet, vitae orci placerat enim. Vel
+dapibus ultrices aliquam. Sed facilisis sed posuere varius sodales blandit duis.
+Enim malesuada, phasellus bibendum blandit nisl ex. Lobortis quis varius sed
+venenatis eleifend eu, sollicitudin non tellus. Cubilia nullam mattis ut nam
+scelerisque ante sem cras. Donec, ligula diam non finibus mauris duis platea
+placerat, natoque, ac nullam. Fames nunc ac id risus vitae eget himenaeos. Nibh
+lectus in rutrum mi, quis ultrices magnis, elit at, morbi ligula. Faucibus dolor
+nunc, posuere in tortor eget enim potenti maximus malesuada. Consequat
+ullamcorper amet neque blandit sed magna. Ac enim nam leo non blandit
+scelerisque ut erat facilisis. Metus vestibulum bibendum in non. Ac, leo viverra
+orci risus sapien vitae. Luctus vitae cum, dictum ligula sapien. Vitae sem massa
+faucibus netus morbi habitasse mi vehicula. Sollicitudin aliquam non egestas
+litora cursus non diam. Lacus vehicula magna sit non lobortis non auctor
+sollicitudin feugiat rhoncus nostra vitae mollis magna. Magna commodo ut lacus
+aenean. Libero, porta ante. Justo quam consectetur risus varius. Blandit gravida
+eros tempus lectus nibh tortor faucibus conubia cursus conubia, egestas mi.
+Viverra torquent eu ut nostra elit magnis nisi quis. Ligula maecenas montes nibh
+habitant dignissim velit ut ut egestas pulvinar in ac. Aenean lorem luctus
+sociis primis fusce odio himenaeos. Dictum ligula curae pellentesque tempor
+nisl. Commodo gravida commodo. Dui, in sagittis cubilia, viverra mi fusce, dis.
+Praesent pellentesque sed sodales sit est turpis magna eu velit curabitur
+volutpat conubia hac finibus. Nec, dolor volutpat venenatis condimentum fusce.
+Suspendisse, convallis eleifend sed tortor. Dignissim pretium, quis. Erat sed
+sed sem eu sit, nunc quis phasellus tristique, donec. Suscipit adipiscing
+himenaeos amet et sem erat euismod. Vel mauris velit donec enim. Phasellus enim
+interdum nulla, mi vel sed sed aenean nam aliquam inceptos. Nulla habitant ut
+condimentum quisque dolor. Finibus orci ornare ac iaculis ipsum ex. Vestibulum
+diam dictum amet non. Tempus habitant tincidunt condimentum non. Pulvinar
+sociosqu consectetur malesuada malesuada eleifend urna litora vestibulum nisl
+penatibus. Ac a porta donec urna massa ut varius placerat montes vitae. Per
+dolor eget vitae suspendisse libero vitae. Adipiscing maecenas aliquam odio
+felis. Litora auctor dolor. Et et vel, et id orci. Non nec amet facilisis
+gravida vitae quis condimentum torquent? Sed mi ipsum tellus proin sed, eget,
+ultricies dolor, sed. Et eu scelerisque id commodo, nulla nec dictumst nec.
+Molestie maximus interdum imperdiet lacus et. Finibus lorem mi lectus, non,
+nulla aliquam est sed? Ridiculus libero, posuere dolor blandit elementum eros
+neque. Fusce odio vivamus placerat non, class ut eu. Et eget molestie maximus
+neque in montes ut dui tincidunt id. Id mauris sed quisque mauris non non in
+condimentum mattis. In pellentesque conubia netus volutpat vulputate at
+pellentesque, proin, nec. Nunc praesent mauris, quis mi fringilla dictum
+scelerisque diam dui in. Parturient cursus quis quam habitasse diam sed, leo
+vitae hac, ac sollicitudin, purus. Erat dolor aenean quam lectus scelerisque
+laoreet. Eros proin sapien ultricies, maximus, orci libero id, vestibulum nulla.
+Vulputate sed facilisis eget sagittis. Accumsan dolor, mauris nulla posuere
+tincidunt turpis risus laoreet, interdum. Nisl pretium vestibulum eu placerat.
+Accumsan odio nec sapien molestie id. Fusce id nunc varius erat suspendisse
+porta nulla eget arcu urna. Nec himenaeos nullam per. Sed nascetur porttitor
+neque lectus senectus mi lorem. In, nostra sed vel laoreet velit tempor suscipit
+ac ornare. Ac, sed, in eu lorem vivamus iaculis scelerisque, ut neque! Dui, ut
+sed nec consequat ullamcorper ipsum. In vel commodo aliquam mus, sem sed sit eu.
+Id duis iaculis. Suspendisse sed sed, ut maecenas. Natoque netus litora sed
+mauris lobortis quam sagittis, elementum. Pellentesque suscipit erat magna proin
+id, nam mi cras volutpat aptent tempus. Enim lacus phasellus sed, donec
+ridiculus vel et. Odio in, in dictum amet cursus himenaeos semper et ante.
+Consectetur nunc sed et ante nibh sed, quam egestas, vulputate ac. Faucibus
+pretium eu lorem dolor sed curae a interdum. Ultrices iaculis quisque at
+vulputate quis eu ante platea suscipit eget. Mauris non vitae dolor, iaculis nec
+metus donec, sed nibh, sed a. Torquent et tellus ac ante et non condimentum
+justo, varius. Eu ac bibendum fermentum at tincidunt netus at amet sit. Nisi
+pretium nostra. Purus molestie vivamus risus commodo sed sit. Tortor,
+suspendisse tristique eu tempor eros? Cum nibh, magna in erat sed semper vel
+tincidunt amet. Semper, porta, aenean orci ut, ullamcorper tincidunt. Etiam
+mauris suspendisse gravida arcu dui vitae. Platea, sodales velit, habitant
+tincidunt nulla eu praesent. Eros sociosqu maecenas quis dolor egestas consequat
+ligula consectetur netus amet. Arcu, laoreet finibus facilisi primis vulputate
+erat in nec. Leo aenean cubilia parturient amet ornare sed sed. Proin, volutpat,
+nisi ut metus ut in. Facilisis faucibus nunc, justo lorem dictumst penatibus.
+Conubia eu posuere vivamus et class, primis ac nec, hendrerit. Mollis sed
+primis. Vitae mus conubia pellentesque. Nunc in accumsan dignissim. Tristique
+himenaeos lorem adipiscing fermentum ornare. Mus dapibus commodo. Convallis
+massa inceptos ornare. Fames cum ante finibus netus aliquam egestas.
+Sollicitudin vel sodales et ut cras. Vitae iaculis facilisis euismod ligula leo
+et sit rutrum porttitor sodales in dui, sed tellus. Sed in est egestas eget
+auctor nec turpis. Condimentum maecenas, dolor fusce dictumst. Tempor, justo,
+sed magnis interdum interdum id potenti mus penatibus. Vitae magna rutrum netus.
+Platea non diam fames metus nisl convallis suspendisse. Ac quisque quis id
+cubilia, porta, et nam quam fermentum elit. Et malesuada taciti sagittis lacus
+lacus erat magnis. Nulla eros nec litora vestibulum nam et rutrum mollis maximus
+accumsan. Nibh ut ridiculus. Donec praesent, est sed semper consequat leo
+egestas interdum, vel penatibus. Arcu nec leo orci aenean sapien. Mi, nisi massa
+donec vulputate gravida. Dui conubia ipsum. Aliquam feugiat vestibulum nostra
+pellentesque donec. Dapibus efficitur integer in, condimentum justo quam sociis,
+eu. Aenean sollicitudin nulla sed ante pellentesque est class. Sit, nec egestas
+urna quis aptent pretium nibh feugiat imperdiet eu sodales. Pellentesque varius
+et consequat a aliquet, ut duis maximus nec. Ac ac pharetra himenaeos felis, ut
+morbi amet diam non. Class, venenatis venenatis mollis sed. Ipsum ut elementum
+sem luctus aliquet augue! Aenean at, ligula tempus urna litora. Volutpat
+consequat eu auctor eu. Aliquam accumsan tincidunt amet ac in felis dignissim,
+aliquam, tincidunt congue. Viverra et amet nulla pellentesque et. Ipsum sed
+aliquam non. Lacinia, cras tortor vel ante ante ac curae laoreet, ipsum sodales.
+Ligula metus ac lacinia sagittis in fusce fames montes in habitasse, quam. Nunc,
+id! Cubilia varius eget, gravida quis phasellus pretium ex dictumst. Sit,
+mauris, in lacinia cubilia vehicula non maximus. Velit sed, aliquam fringilla
+nibh duis dolor ac parturient lorem finibus. Non amet magna pretium, montes
+tortor, tincidunt, ante interdum vitae vitae. Velit vitae dignissim nulla eu
+nunc ullamcorper. Penatibus convallis nam eu eu augue. Pellentesque rutrum justo
+finibus enim pulvinar libero pharetra convallis curabitur. Non velit
+pellentesque amet est. Felis curae natoque, conubia curabitur dictum eros, nisl
+nibh, sed nisi efficitur dapibus. Eu et auctor nostra et. Fermentum libero dolor
+nibh vitae metus in elit hac vulputate! Tempus id tempor netus vestibulum
+lectus et, donec! Habitasse arcu pulvinar viverra eleifend gravida dui sit
+volutpat in inceptos. Quis nibh elit purus ac ultrices. Lacinia, cursus
+parturient ut purus et, et ullamcorper quis viverra et nulla in. Ac semper
+risus. Est vel dapibus vitae aliquet felis ullamcorper ut augue cubilia blandit
+ipsum. Vitae porttitor eros dignissim neque habitant habitasse laoreet erat.
+Etiam diam elit vitae vel dui. Vitae gravida felis ante platea eget vestibulum
+tristique, in suscipit ac. Lacus convallis neque fermentum primis taciti duis
+non, vitae euismod, est velit porttitor libero ridiculus. Iaculis quis nam
+viverra ac aliquet urna montes. Sed congue accumsan, est lacus proin sed
+pellentesque facilisis ac. Amet ipsum penatibus ex dolor tincidunt massa. Dictum
+nec vestibulum et vel ultricies potenti ligula himenaeos ac eu pellentesque.
+Nascetur mi ut tortor orci? Nascetur at cubilia finibus luctus, in maximus dolor
+porta. Proin porttitor tincidunt in suscipit et, class ac eu, sed fames. Quisque
+habitant, venenatis nec pulvinar ante ad lobortis fames a dictumst maecenas
+dictumst nisl sed. Conubia conubia platea lectus sem ut vitae proin nisl. Orci
+curae, per dolor lacus mollis. Posuere lacinia ultrices at tempor, aliquam
+tellus quam, sed enim. Aliquet a sem semper duis etiam suspendisse, eget enim et
+dolor cras. In porta turpis sit imperdiet eros sed vitae est. Sed vehicula
+mauris vivamus. Consectetur lectus urna mi penatibus. Ut consectetur erat ac
+justo habitasse praesent primis. Erat at tempor nam augue nulla ut ridiculus
+rhoncus, dapibus. Urna eros quam ut, nulla finibus mauris interdum mauris justo.
+Vestibulum hac adipiscing nunc sagittis ligula, varius enim a. Amet, feugiat
+nulla mauris netus aptent diam. Ut malesuada nulla condimentum nam dignissim.
+Nec magna volutpat, magna in. Fringilla lacinia, quis nunc sit enim, massa nec
+tristique a scelerisque ac pellentesque sed. Penatibus tristique, quis laoreet
+laoreet sollicitudin interdum himenaeos donec est commodo. Per maximus tempor
+tristique commodo at, curae a ultricies urna. Vel fringilla donec non velit
+maximus diam id ac. Aliquam risus integer, massa, non. Magna commodo turpis nunc
+tristique mollis tristique. Malesuada purus quis ut taciti vulputate sed et
+auctor. Mauris ex id primis feugiat nec. In sed mattis tempus risus, amet nulla
+penatibus augue magna lacus laoreet. Fermentum phasellus rutrum, mollis pharetra
+nullam vel nascetur leo himenaeos dolor pulvinar. Mollis nostra nullam
+phasellus, a suscipit nibh ultricies. Cubilia, lorem nulla orci turpis amet
+inceptos ad rutrum proin vitae. Ipsum auctor metus mauris non a id, habitasse,
+porttitor tincidunt. Nullam nam nunc ullamcorper morbi nam facilisis fusce, non
+habitant cubilia nec euismod. Lectus quis accumsan neque habitasse sed leo.
+Lectus sed per venenatis sed accumsan viverra malesuada, diam. Ut dui, porta,
+blandit ut vestibulum. Volutpat venenatis vitae, suscipit tempor amet venenatis.
+Sed mi dui tristique non ligula, ac ridiculus sit parturient. Ut, nibh, et
+taciti, at sed bibendum orci potenti, et. Egestas, condimentum laoreet donec,
+pharetra nec. Ut quis faucibus sed. Rutrum quis lorem in ut. Sollicitudin,
+inceptos posuere parturient class magnis neque id sed etiam. Pulvinar finibus
+ullamcorper, scelerisque imperdiet conubia et vitae. Aliquet tortor mi sed
+commodo senectus ante nunc ut mattis ornare cursus tempus.
