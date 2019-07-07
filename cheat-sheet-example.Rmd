@@ -2,34 +2,38 @@
 title: ""
 output:
   pdf_document:
-    latex_engine: pdflatex
-    keep_tex: true
     template: template.tex
 ---
 
 
-## Some Simple Examples
+# Some Simple Examples
+
+## One-line equation
 
 Euler's constant: $e = \mathop {\lim }\limits_{n \to \infty } \left( {1 + \frac{1}{n}} \right)^n$
 
+## Multi-line equation
+
+This renders as a "pop-up" in Rstudio if you've selected "Inline" with the "Show equation and image previews" option at Tools > Global Options... > Rmarkdown
+
+$$
+\begin{array}{lcl}
+I &=& \int (x + 1) dx \\
+&=& \frac{x^2}{2} + x + C.
+\end{array}
+$$
+
+## Comments with `\iffalse` (and closing `\fi`)
+
+You shouldn't see anything in the output PDF here (although there is an equation in the Rmarkdown document).
+
+\iffalse
 Integration by parts: $\int {u\frac{{dv}}{{dx}}} dx = uv - \int {\frac{{du}}{{dx}}} vdx$
+\fi
 
-Example of a multi-line equation:
+# A "Big" Test of Equations
 
-$$
-\begin{align*}
-I &= \int (x + 1) dx \\
-&= \frac{x^2}{2} + x + C.
-\end{align*}
-$$
-
-<!--
-**Source: Dave Richeson, Dickinson College, \href{http://divisbyzero.com/}{http://divisbyzero.com/}**
--->
-
-## Some Quantim Mechanics Physics Equations.
-
-Source: https://www.overleaf.com/articles/griffith-quantum-mechanics-time-dependent-perturbation-theory-cheatsheet-ucb-137b-final/jwynrzctvqgp
+**Source:** [Griffith Quantum Mechanics Time Dependent Perturbation theory CheatSheet (UCB 137B final) on www.overleaf.com](https://www.overleaf.com/articles/griffith-quantum-mechanics-time-dependent-perturbation-theory-cheatsheet-ucb-137b-final/jwynrzctvqgp)
 
 \section{TIPT}
 \begin{align*}
@@ -39,17 +43,6 @@ Source: https://www.overleaf.com/articles/griffith-quantum-mechanics-time-depend
     E_n^1 = \langle \psi_n^0 | H' | \psi_n^0 \rangle \\
     |\psi_n^1\rangle = \sum_{m\neq n} \frac{\langle \psi_m^0 | H' | \psi_n^0 \rangle}{E_n^0-E_m^0} | \psi_m^0\rangle
 \end{align*}
-
-Or, the Rmarkdown way (with `$$`), which enables inline previews (in RStudio).
-
-
-$$
-H = H_0 + H' \\
-E_n = E_n^0 + E_n^1 \\
-|\psi_n\rangle = |\psi_n^0\rangle + |\psi_n^1\rangle \\
-E_n^1 = \langle \psi_n^0 | H' | \psi_n^0 \rangle \\
-|\psi_n^1\rangle = \sum_{m\neq n} \frac{\langle \psi_m^0 | H' | \psi_n^0 \rangle}{E_n^0-E_m^0} | \psi_m^0\rangle
-$$
 
 \subsection{Degenerate Case}
 \begin{align*}
@@ -294,6 +287,8 @@ For a Linear Operator $\hat{D}_x$
     \int_0^\infty e^{-ax^2}x^n dx &= I_n(a)\\
     I_0=\frac12 \sqrt{\frac{\pi}{a}}, I_1&=\frac{1}{2a}, I_2=\frac1{4a} \sqrt{\frac{\pi}{a}}, I_3=\frac{1}{2a^2}
 \end{align*}
+
+# A "Big" Test of Words
 
 **Source: `clipr::write_clip(stringi::stri_rand_lipsum(10))`**
 

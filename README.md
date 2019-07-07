@@ -3,7 +3,7 @@ A [LaTex](https://www.latex-project.org/) template to use with [`{rmarkdown}`](h
 
 To use it, include the following in Rmarkdown YAML header.
 
-````
+```
 ---
 output:
   pdf_document:
